@@ -80,7 +80,7 @@
     <string name="hint_item_quantity">Quantity</string>
 
     <!-- Text hint for name field in the editor [CHAR LIMIT=30] -->
-    <string name="hint_item_supplier">Supplier Link</string>
+    <string name="hint_item_supplier">Supplier Email</string>
 
     <!-- Text hint for name field in the editor [CHAR LIMIT=30] -->
     <string name="hint_item_picture">Picture Link</string>
@@ -93,5 +93,27 @@
 
     <!-- Text for decrease button in the editor [CHAR LIMIT=30] -->
     <string name="button_order">Order more</string>
+
+    <!-- Toast text for decreasing quantity [CHAR LIMIT=NONE] -->
+    <string name="decrease_toast">Quantity must be 0 or more.</string>
+
+    <!-- Toast text for when an item quantity reaches 0 [CHAR LIMIT=20] -->
+    <string name="no_quantity">No stock left!</string>
+
+    <!-- Dialog message to ask the user to confirm deleting the current pet [CHAR LIMIT=NONE] -->
+    <string name="delete_all_confirm">Delete all inventory items?</string>
+
+    <!-- Toast text for error validating item fields [CHAR LIMIT=NONE] -->
+    <string name="save_validation">Please make sure your item has a name, price, quantity, supplier URL, and picture URL.</string>
+
+    <string name="item_picture">Add Item Picture</string>
+
+    <!-- Email intent subject [CHAR LIMIT=NONE] -->
+    <string name="order_to">Order for <xliff.g id="supplier_name" example="Home Depot">%s</xliff.g></string>
+
+    <!-- Email intent message [CHAR LIMIT=NONE] -->
+    <string name="order_summary">Hello\nI would like to order more <xliff.g id="inventory_item_name" example="Ladder">%s</xliff.g> please!\nThank you!</string>
+
+
 
 </resources>

@@ -15,5 +15,12 @@
 
     <!-- Common margin value used throughout the app -->
     <dimen name="activity_margin">16dp</dimen>
+
+    <dimen name="category_font_size">16sp</dimen>
+    <dimen name="divider">2dp</dimen>
+    <dimen name="xsmall">8dp</dimen>
+    <dimen name="small">16dp</dimen>
+    <dimen name="medium">32dp</dimen>
+    <dimen name="image">100dp</dimen>
 </resources>
 

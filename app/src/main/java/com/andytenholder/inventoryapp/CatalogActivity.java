@@ -1,14 +1,16 @@
 package com.andytenholder.inventoryapp;
 
+import android.app.AlertDialog;
 import android.app.LoaderManager;
 import android.content.ContentUris;
-import android.content.ContentValues;
 import android.content.CursorLoader;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.Loader;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.Menu;
@@ -16,7 +18,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
-import android.support.design.widget.FloatingActionButton;
 
 import com.andytenholder.inventoryapp.data.Contract;
 
@@ -82,22 +83,6 @@ public class CatalogActivity extends AppCompatActivity implements
     }
 
     /**
-     * Helper method to insert hardcoded data into the database. For debugging purposes only.
-     */
-    private void insertItem() {
-        // Create a ContentValues object where column names are the keys
-        ContentValues values = new ContentValues();
-        values.put(Contract.InventoryEntry.COLUMN_NAME, "GENTLEMAN GNAR FIGURE");
-        values.put(Contract.InventoryEntry.COLUMN_PRICE, "25.00");
-        values.put(Contract.InventoryEntry.COLUMN_SUPPLIER, "https://na.merch.riotgames.com/en/collectibles/figures/gentleman-gnar-figure.html");
-        values.put(Contract.InventoryEntry.COLUMN_QUANTITY, 7);
-        values.put(Contract.InventoryEntry.COLUMN_PICTURE, "https://na.merch.riotgames.com/media/catalog/product/cache/1/image/570x/9df78eab33525d08d6e5fb8d27136e95/g/e/gentleman_gnar_1_copy_4_.png");
-
-
-        Uri newUri = getContentResolver().insert(Contract.InventoryEntry.CONTENT_URI, values);
-    }
-
-    /**
      * Helper method to delete all items in the database.
      */
     private void deleteAllItems() {
@@ -117,13 +102,9 @@ public class CatalogActivity extends AppCompatActivity implements
     public boolean onOptionsItemSelected(MenuItem item) {
         // User clicked on a menu option in the app bar overflow menu
         switch (item.getItemId()) {
-            // Respond to a click on the "Insert dummy data" menu option
-            case R.id.action_insert_dummy_data:
-                insertItem();
-                return true;
             // Respond to a click on the "Delete all entries" menu option
             case R.id.action_delete_all_entries:
-                deleteAllItems();
+                deleteAllConfirm();
                 return true;
         }
         return super.onOptionsItemSelected(item);
@@ -135,7 +116,9 @@ public class CatalogActivity extends AppCompatActivity implements
         String[] projection = {
                 Contract.InventoryEntry._ID,
                 Contract.InventoryEntry.COLUMN_NAME,
-                Contract.InventoryEntry.COLUMN_QUANTITY };
+                Contract.InventoryEntry.COLUMN_QUANTITY,
+                Contract.InventoryEntry.COLUMN_PICTURE,
+                Contract.InventoryEntry.COLUMN_PRICE};
 
         // This loader will execute the ContentProvider's query method on a background thread
         return new CursorLoader(this,   // Parent activity context
@@ -157,5 +140,26 @@ public class CatalogActivity extends AppCompatActivity implements
         // Callback called when the data needs to be deleted
         mCursorAdapter.swapCursor(null);
     }
+
+    private void deleteAllConfirm() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setMessage(R.string.delete_all_confirm);
+        builder.setPositiveButton(R.string.delete, new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int id) {
+                deleteAllItems();
+            }
+        });
+        builder.setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int id) {
+                if (dialog != null) {
+                    dialog.dismiss();
+                }
+            }
+        });
+
+        AlertDialog alertDialog = builder.create();
+        alertDialog.show();
+    }
+
 
 }

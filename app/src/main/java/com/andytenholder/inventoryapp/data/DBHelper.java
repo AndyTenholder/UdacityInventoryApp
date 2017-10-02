@@ -3,6 +3,7 @@ package com.andytenholder.inventoryapp.data;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
 import com.andytenholder.inventoryapp.data.Contract.InventoryEntry;
 
@@ -44,6 +45,8 @@ public class DBHelper extends SQLiteOpenHelper {
                 + InventoryEntry.COLUMN_PRICE + " INTEGER, "
                 + InventoryEntry.COLUMN_PICTURE + " TEXT, "
                 + InventoryEntry.COLUMN_QUANTITY + " INTEGER);";
+
+        Log.v(LOG_TAG,SQL_CREATE_TABLE);
 
         // Execute the SQL statement
         db.execSQL(SQL_CREATE_TABLE);

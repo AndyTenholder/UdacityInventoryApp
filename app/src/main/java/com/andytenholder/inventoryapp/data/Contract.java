@@ -55,46 +55,12 @@ public class Contract {
         /** Name of database table */
         public final static String TABLE_NAME = "inventory";
 
-        /**
-         * Unique ID number for the database item (only for use in the database table).
-         *
-         * Type: INTEGER
-         */
+
         public final static String _ID = BaseColumns._ID;
-
-        /**
-         * Name of the database item.
-         *
-         * Type: TEXT
-         */
         public final static String COLUMN_NAME ="name";
-
-        /**
-         * Supplier of the database item.
-         *
-         * Type: TEXT
-         */
         public final static String COLUMN_SUPPLIER = "supplier";
-
-        /**
-         * Price of the database item.
-          *
-         * Type: INTEGER
-         */
         public final static String COLUMN_PRICE = "price";
-
-        /**
-         * Quantity of the database item.
-         *
-         * Type: INTEGER
-         */
         public final static String COLUMN_QUANTITY = "quantity";
-
-        /**
-         * Picture of the database item.
-         *
-         * Type: URL
-         */
         public final static String COLUMN_PICTURE = "picture";
 
     }
